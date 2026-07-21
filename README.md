@@ -21,9 +21,26 @@ npm i
 npm run dev
 ```
 
+## Deployment to Vercel
+
+This project is configured and ready to deploy to Vercel:
+
+1. Push your code to GitHub
+2. Go to [Vercel](https://vercel.com)
+3. Import your repository from GitHub
+4. Vercel will automatically detect the configuration
+5. Click "Deploy"
+
+The project includes:
+- `vercel.json` - Vercel configuration
+- `nitro.config.ts` - Nitro preset for Vercel
+- Build command: `npm run build`
+
 ## Built with
 
 - TanStack Start
 - TypeScript
 - React
 - Tailwind CSS
+- Framer Motion
+- Radix UI
