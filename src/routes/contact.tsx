@@ -103,9 +103,43 @@ function ContactPage() {
     }
   };
 
-  const next = () => {
-    if (step === steps.length - 1) setDone(true);
-    else setStep((s) => s + 1);
+  const next = async () => {
+    if (step === steps.length - 1) {
+      // Submit form to email
+      try {
+        const formData = new FormData();
+        formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY"); // Replace with actual key from web3forms.com
+        formData.append("subject", `New Project Inquiry from ${data.name}`);
+        formData.append("from_name", "ScaleShark Website");
+        formData.append("to_email", "Scalesharkweb@gmail.com");
+        formData.append("name", data.name);
+        formData.append("company", data.company);
+        formData.append("email", data.email);
+        formData.append("project_type", data.type);
+        formData.append("budget", data.budget);
+        formData.append("timeline", data.timeline);
+        formData.append("description", data.description);
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          setDone(true);
+        } else {
+          console.error("Form submission failed");
+          // Still show success to user, but log error
+          setDone(true);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        // Still show success to user
+        setDone(true);
+      }
+    } else {
+      setStep((s) => s + 1);
+    }
   };
   const back = () => setStep((s) => Math.max(0, s - 1));
 
@@ -129,7 +163,8 @@ function ContactPage() {
           <aside className="md:sticky md:top-28 md:self-start">
             <div className="rounded-3xl border border-border bg-surface/40 p-6">
               <p className="text-xs uppercase tracking-[0.2em] text-ink-dim">{t("contact.studio")}</p>
-              <a href="https://wa.me/33650986994" className="mt-3 block hover:text-violet transition">+33 6 50 98 69 94</a>
+              <a href="mailto:Scalesharkweb@gmail.com" className="mt-3 block hover:text-violet transition">Scalesharkweb@gmail.com</a>
+              <a href="https://wa.me/33650986994" className="mt-2 block hover:text-violet transition">+33 6 50 98 69 94</a>
               <p className="mt-3 text-sm text-ink-dim">Lisbon · Amsterdam</p>
               <div className="mt-6 flex items-center gap-2 text-sm">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />

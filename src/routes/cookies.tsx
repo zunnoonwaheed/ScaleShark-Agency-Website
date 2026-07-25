@@ -227,8 +227,8 @@ function CookiesPage() {
               </p>
               <p className="mt-4 leading-relaxed text-ink-dim">
                 Email:{" "}
-                <a href="mailto:hello@scaleshark.com" className="text-violet hover:underline">
-                  hello@scaleshark.com
+                <a href="mailto:Scalesharkweb@gmail.com" className="text-violet hover:underline">
+                  Scalesharkweb@gmail.com
                 </a>
                 <br />
                 WhatsApp:{" "}

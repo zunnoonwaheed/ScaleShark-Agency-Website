@@ -84,8 +84,8 @@ export function Footer() {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="https://instagram.com"
-                    className="hover:text-violet"
+                    href="https://www.instagram.com/scalesharkweb?igsh=MWV0OWhycm9xbnhkbA=="
+                    className="hover:text-violet transition"
                     rel="noreferrer"
                     target="_blank"
                   >
@@ -94,18 +94,8 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://twitter.com"
-                    className="hover:text-violet"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Twitter / X
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://linkedin.com"
-                    className="hover:text-violet"
+                    href="https://www.linkedin.com/company/136076714"
+                    className="hover:text-violet transition"
                     rel="noreferrer"
                     target="_blank"
                   >
@@ -114,12 +104,12 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://dribbble.com"
-                    className="hover:text-violet"
+                    href="https://www.facebook.com/profile.php?id=61591966445294"
+                    className="hover:text-violet transition"
                     rel="noreferrer"
                     target="_blank"
                   >
-                    Dribbble
+                    Facebook
                   </a>
                 </li>
               </ul>
