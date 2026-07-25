@@ -49,6 +49,7 @@ function ContactPage() {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<FormState>(initial);
   const [done, setDone] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const projectTypes = [
     t("contact.type.shopify"),
@@ -106,6 +107,7 @@ function ContactPage() {
   const next = async () => {
     if (step === steps.length - 1) {
       // Submit form to email via Web3Forms
+      setSubmitting(true);
       try {
         const formData = new FormData();
         formData.append("access_key", "69cde487-5cf0-4072-bc8d-9005c4c03fde");
@@ -114,10 +116,17 @@ function ContactPage() {
         formData.append("name", data.name);
         formData.append("company", data.company);
         formData.append("email", data.email);
-        formData.append("project_type", data.type);
-        formData.append("budget", data.budget);
-        formData.append("timeline", data.timeline);
-        formData.append("message", data.description);
+        formData.append("message", `
+Project Type: ${data.type}
+Company: ${data.company}
+Budget: ${data.budget}
+Timeline: ${data.timeline}
+
+Project Description:
+${data.description}
+        `);
+
+        console.log("Submitting form to Web3Forms...");
 
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -125,19 +134,20 @@ function ContactPage() {
         });
 
         const result = await response.json();
+        console.log("Web3Forms Response:", result);
 
         if (result.success) {
-          console.log("Form submitted successfully!");
+          console.log("✅ Form submitted successfully!");
           setDone(true);
         } else {
-          console.error("Form submission failed:", result.message);
-          // Still show success to user, but log error
-          setDone(true);
+          console.error("❌ Form submission failed:", result.message);
+          alert("There was an error submitting the form. Please try again or contact us via WhatsApp.");
         }
       } catch (error) {
-        console.error("Error submitting form:", error);
-        // Still show success to user
-        setDone(true);
+        console.error("❌ Error submitting form:", error);
+        alert("There was an error submitting the form. Please try again or contact us via WhatsApp.");
+      } finally {
+        setSubmitting(false);
       }
     } else {
       setStep((s) => s + 1);
@@ -327,11 +337,23 @@ function ContactPage() {
                   </button>
                   <button
                     onClick={next}
-                    disabled={!canNext()}
+                    disabled={!canNext() || submitting}
                     data-cursor="hover"
                     className="inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 md:px-6 md:py-3 text-sm font-medium text-primary-foreground transition disabled:opacity-40 hover:bg-violet-glow touch-manipulation active:scale-95"
                   >
-                    {step === steps.length - 1 ? t("contact.send") : t("contact.next")} →
+                    {submitting ? (
+                      <>
+                        <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        {step === steps.length - 1 ? t("contact.send") : t("contact.next")} →
+                      </>
+                    )}
                   </button>
                 </div>
               </>
