@@ -556,71 +556,87 @@ function Process() {
 function Testimonials() {
   const { t } = useT();
   const { testimonials } = useSiteData();
-  const [i, setI] = useState(0);
-  const item = testimonials[i];
-  return (
-    <section className="relative border-t border-border py-16 md:py-24">
-      <div className="mx-auto max-w-[1320px] px-6 md:px-10">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-violet">{t("home.clients.eyebrow")}</p>
-            <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-tight">
-              {t("home.clients.heading")}
-            </h2>
-          </div>
-          <div className="flex shrink-0 gap-2">
-            <button
-              onClick={() => setI((i - 1 + testimonials.length) % testimonials.length)}
-              data-cursor="hover"
-              className="grid h-10 w-10 place-items-center rounded-full border border-border transition hover:border-violet hover:text-violet md:h-12 md:w-12"
-              aria-label={t("home.clients.prev")}
-            >
-              ←
-            </button>
-            <button
-              onClick={() => setI((i + 1) % testimonials.length)}
-              data-cursor="hover"
-              className="grid h-10 w-10 place-items-center rounded-full border border-border transition hover:border-violet hover:text-violet md:h-12 md:w-12"
-              aria-label={t("home.clients.next")}
-            >
-              →
-            </button>
-          </div>
-        </div>
 
-        <div className="mt-12 grid gap-8 md:mt-16 md:grid-cols-[1fr_1.4fr] md:items-center">
-          <motion.div
-            key={item.name + "-img"}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border md:aspect-[4/5]"
-          >
-            <img src={item.photo} alt={item.name} className="h-full w-full object-cover" />
-            <div className="absolute bottom-0 left-0 m-4 rounded-full bg-background/80 px-3 py-1 text-xs uppercase tracking-widest backdrop-blur">
-              {item.tag}
-            </div>
-          </motion.div>
-          <motion.div
-            key={item.name + "-text"}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-xs uppercase tracking-[0.2em] text-violet">{item.rating}</div>
-            <blockquote className="mt-6 font-display text-2xl leading-snug md:text-4xl">
-              "{item.quote}"
-            </blockquote>
-            <div className="mt-8 flex items-center gap-4 text-sm">
-              <div>
-                <p className="font-medium">{item.name}</p>
-                <p className="text-ink-dim">
-                  {item.role}, {item.company}
-                </p>
-              </div>
-            </div>
-          </motion.div>
+  // Double testimonials for infinite scroll
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
+
+  return (
+    <section className="relative border-t border-border py-16 md:py-24 overflow-hidden bg-background">
+      <div className="mx-auto max-w-[1320px] px-6 md:px-10 mb-12 md:mb-16">
+        <div className="text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-violet">{t("home.clients.eyebrow")}</p>
+          <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-tight">
+            {t("home.clients.heading")}
+          </h2>
         </div>
+      </div>
+
+      {/* Auto-scrolling container - FULL WIDTH */}
+      <div className="relative">
+        <style>
+          {`
+            @keyframes scroll {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(calc(-404px * ${testimonials.length}));
+              }
+            }
+            .animate-scroll {
+              animation: scroll 60s linear infinite;
+            }
+          `}
+        </style>
+        <div className="overflow-hidden">
+          <div className="flex gap-6 animate-scroll">
+              {duplicatedTestimonials.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex-shrink-0 w-[340px] md:w-[380px]"
+                >
+                  <div className="h-full rounded-2xl border border-border/60 bg-surface-2 p-6 md:p-8 flex flex-col transition-all hover:border-violet/50 hover:shadow-lg hover:shadow-violet/10">
+                    {/* Tag and Rating */}
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="inline-flex items-center rounded-full border border-violet/30 bg-violet/10 px-3 py-1 text-[10px] uppercase tracking-widest text-violet">
+                        {item.tag}
+                      </span>
+                      <span className="text-xs font-semibold text-violet">
+                        {item.rating}
+                      </span>
+                    </div>
+
+                    {/* Quote */}
+                    <blockquote className="flex-1 mb-6">
+                      <p className="text-base leading-relaxed md:text-lg md:leading-relaxed text-ink">
+                        "{item.quote}"
+                      </p>
+                    </blockquote>
+
+                    {/* Author info */}
+                    <div className="pt-6 border-t border-border/50">
+                      <p className="font-semibold text-base">{item.name}</p>
+                      <p className="mt-1 text-sm text-ink-dim">{item.role}</p>
+                      <p className="mt-0.5 text-sm font-medium text-violet">{item.company}</p>
+
+                      {/* Star rating */}
+                      <div className="flex gap-0.5 mt-4">
+                        {[...Array(5)].map((_, starIdx) => (
+                          <svg key={starIdx} className="h-4 w-4 text-violet" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            ))}
+            </div>
+          </div>
+
+        {/* Subtle fade edges */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent" />
       </div>
     </section>
   );
@@ -650,11 +666,11 @@ function FinalCTA() {
               </Link>
             </Magnetic>
             <a
-              href="mailto:hello@scaleshark.com"
+              href="https://wa.me/33650986994"
               data-cursor="hover"
               className="rounded-full border border-border px-8 py-4 font-medium transition hover:border-ink"
             >
-              hello@scaleshark.com
+              +33 6 50 98 69 94
             </a>
           </div>
           <p className="mt-6 text-sm text-ink-dim">{t("home.final.booking")}</p>

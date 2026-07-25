@@ -23,11 +23,11 @@ export function Footer() {
             <div className="mt-10">
               <Magnetic strength={0.25}>
                 <a
-                  href="mailto:hello@scaleshark.com"
+                  href="https://wa.me/33650986994"
                   data-cursor="hover"
                   className="group inline-flex items-center gap-3 text-2xl font-medium underline decoration-violet/40 decoration-2 underline-offset-8 transition hover:decoration-violet md:text-4xl"
                 >
-                  hello@scaleshark.com
+                  +33 6 50 98 69 94
                   <span aria-hidden className="transition-transform group-hover:translate-x-2">
                     →
                   </span>

@@ -129,8 +129,7 @@ function ContactPage() {
           <aside className="md:sticky md:top-28 md:self-start">
             <div className="rounded-3xl border border-border bg-surface/40 p-6">
               <p className="text-xs uppercase tracking-[0.2em] text-ink-dim">{t("contact.studio")}</p>
-              <p className="mt-3">hello@scaleshark.com</p>
-              <p>+31 20 000 0000</p>
+              <a href="https://wa.me/33650986994" className="mt-3 block hover:text-violet transition">+33 6 50 98 69 94</a>
               <p className="mt-3 text-sm text-ink-dim">Lisbon · Amsterdam</p>
               <div className="mt-6 flex items-center gap-2 text-sm">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
@@ -180,10 +179,10 @@ function ContactPage() {
                               key={pt}
                               onClick={() => setData({ ...data, type: pt })}
                               data-cursor="hover"
-                              className={`rounded-2xl border px-4 py-4 text-left text-sm transition ${
+                              className={`rounded-2xl border px-5 py-5 md:px-4 md:py-4 text-left text-sm transition touch-manipulation active:scale-95 ${
                                 data.type === pt
                                   ? "border-violet bg-violet/10 text-ink"
-                                  : "border-border hover:border-ink"
+                                  : "border-border hover:border-ink hover:border-violet/60"
                               }`}
                             >
                               {pt}
@@ -220,10 +219,10 @@ function ContactPage() {
                               key={b}
                               onClick={() => setData({ ...data, budget: b })}
                               data-cursor="hover"
-                              className={`rounded-2xl border px-4 py-4 text-left text-sm transition ${
+                              className={`rounded-2xl border px-5 py-5 md:px-4 md:py-4 text-left text-sm transition touch-manipulation active:scale-95 ${
                                 data.budget === b
                                   ? "border-violet bg-violet/10"
-                                  : "border-border hover:border-ink"
+                                  : "border-border hover:border-ink hover:border-violet/60"
                               }`}
                             >
                               {b}
@@ -241,10 +240,10 @@ function ContactPage() {
                               key={b}
                               onClick={() => setData({ ...data, timeline: b })}
                               data-cursor="hover"
-                              className={`rounded-2xl border px-4 py-4 text-left text-sm transition ${
+                              className={`rounded-2xl border px-5 py-5 md:px-4 md:py-4 text-left text-sm transition touch-manipulation active:scale-95 ${
                                 data.timeline === b
                                   ? "border-violet bg-violet/10"
-                                  : "border-border hover:border-ink"
+                                  : "border-border hover:border-ink hover:border-violet/60"
                               }`}
                             >
                               {b}
@@ -261,7 +260,7 @@ function ContactPage() {
                           onChange={(e) => setData({ ...data, description: e.target.value })}
                           rows={7}
                           placeholder={t("contact.q.details.ph")}
-                          className="w-full rounded-2xl border border-border bg-background/60 p-4 text-sm outline-none transition focus:border-violet"
+                          className="w-full rounded-2xl border border-border bg-background/60 p-5 md:p-4 text-base md:text-sm outline-none transition focus:border-violet focus:ring-2 focus:ring-violet/20 touch-manipulation"
                         />
                       </Field>
                     )}
@@ -285,7 +284,7 @@ function ContactPage() {
                     onClick={back}
                     disabled={step === 0}
                     data-cursor="hover"
-                    className="text-sm text-ink-dim transition hover:text-ink disabled:opacity-30"
+                    className="text-sm md:text-sm py-2 px-3 rounded-lg text-ink-dim transition hover:text-ink disabled:opacity-30 touch-manipulation active:scale-95"
                   >
                     ← {t("contact.back")}
                   </button>
@@ -293,7 +292,7 @@ function ContactPage() {
                     onClick={next}
                     disabled={!canNext()}
                     data-cursor="hover"
-                    className="inline-flex items-center gap-2 rounded-full bg-violet px-6 py-3 text-sm font-medium text-primary-foreground transition disabled:opacity-40"
+                    className="inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 md:px-6 md:py-3 text-sm font-medium text-primary-foreground transition disabled:opacity-40 hover:bg-violet-glow touch-manipulation active:scale-95"
                   >
                     {step === steps.length - 1 ? t("contact.send") : t("contact.next")} →
                   </button>
@@ -354,7 +353,7 @@ function Input({
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       type={type}
-      className="w-full rounded-2xl border border-border bg-background/60 px-5 py-4 text-base outline-none transition focus:border-violet"
+      className="w-full rounded-2xl border border-border bg-background/60 px-5 py-5 md:py-4 text-base outline-none transition focus:border-violet focus:ring-2 focus:ring-violet/20 touch-manipulation"
     />
   );
 }

@@ -95,7 +95,7 @@ export function Nav() {
             <LanguageSwitcher />
             <button
               aria-label="Toggle menu"
-              className="grid h-10 w-10 place-items-center rounded-full border border-border"
+              className="grid h-12 w-12 place-items-center rounded-full border border-border touch-manipulation active:scale-95 transition-transform"
               onClick={() => setOpen((v) => !v)}
             >
             <span className="relative block h-3 w-4">
@@ -143,7 +143,7 @@ export function Nav() {
               </nav>
               <Link
                 to="/contact"
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-violet px-6 py-4 font-medium text-primary-foreground"
+                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-violet px-8 py-5 text-lg font-medium text-primary-foreground touch-manipulation active:scale-95 transition-transform hover:bg-violet-glow"
               >
                 {t("nav.cta")} →
               </Link>
