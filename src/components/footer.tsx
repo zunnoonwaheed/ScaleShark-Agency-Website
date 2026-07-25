@@ -159,15 +159,15 @@ export function Footer() {
       <div className="mx-auto flex max-w-[1600px] flex-col items-start justify-between gap-4 px-6 py-8 text-xs text-ink-dim md:flex-row md:items-center md:px-10">
         <p>© {new Date().getFullYear()} ScaleShark. {t("footer.rights")}</p>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-ink">
+          <Link to="/privacy" className="hover:text-violet transition">
             {t("footer.privacy")}
-          </a>
-          <a href="#" className="hover:text-ink">
+          </Link>
+          <Link to="/terms" className="hover:text-violet transition">
             {t("footer.terms")}
-          </a>
-          <a href="#" className="hover:text-ink">
+          </Link>
+          <Link to="/cookies" className="hover:text-violet transition">
             {t("footer.cookies")}
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
