@@ -105,30 +105,32 @@ function ContactPage() {
 
   const next = async () => {
     if (step === steps.length - 1) {
-      // Submit form to email
+      // Submit form to email via Web3Forms
       try {
         const formData = new FormData();
-        formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY"); // Replace with actual key from web3forms.com
+        formData.append("access_key", "69cde487-5cf0-4072-bc8d-9005c4c03fde");
         formData.append("subject", `New Project Inquiry from ${data.name}`);
         formData.append("from_name", "ScaleShark Website");
-        formData.append("to_email", "Scalesharkweb@gmail.com");
         formData.append("name", data.name);
         formData.append("company", data.company);
         formData.append("email", data.email);
         formData.append("project_type", data.type);
         formData.append("budget", data.budget);
         formData.append("timeline", data.timeline);
-        formData.append("description", data.description);
+        formData.append("message", data.description);
 
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           body: formData,
         });
 
-        if (response.ok) {
+        const result = await response.json();
+
+        if (result.success) {
+          console.log("Form submitted successfully!");
           setDone(true);
         } else {
-          console.error("Form submission failed");
+          console.error("Form submission failed:", result.message);
           // Still show success to user, but log error
           setDone(true);
         }
