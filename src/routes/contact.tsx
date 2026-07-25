@@ -110,9 +110,10 @@ function ContactPage() {
       setSubmitting(true);
       try {
         const formData = new FormData();
-        formData.append("access_key", "69cde487-5cf0-4072-bc8d-9005c4c03fde");
+        formData.append("access_key", "01a01fea-8900-47ed-bd46-a15b229aa8df");
         formData.append("subject", `New Project Inquiry from ${data.name}`);
         formData.append("from_name", "ScaleShark Website");
+        formData.append("cc", "muhammadzunnoon.web@gmail.com,Scalesharkweb@gmail.com");
         formData.append("name", data.name);
         formData.append("company", data.company);
         formData.append("email", data.email);
@@ -175,8 +176,9 @@ ${data.description}
           <aside className="md:sticky md:top-28 md:self-start">
             <div className="rounded-3xl border border-border bg-surface/40 p-6">
               <p className="text-xs uppercase tracking-[0.2em] text-ink-dim">{t("contact.studio")}</p>
-              <a href="mailto:Scalesharkweb@gmail.com" className="mt-3 block hover:text-violet transition">Scalesharkweb@gmail.com</a>
-              <a href="https://wa.me/33650986994" className="mt-2 block hover:text-violet transition">+33 6 50 98 69 94</a>
+              <a href="mailto:muhammadzunnoon.web@gmail.com" className="mt-3 block text-sm hover:text-violet transition">muhammadzunnoon.web@gmail.com</a>
+              <a href="mailto:Scalesharkweb@gmail.com" className="mt-1 block text-sm hover:text-violet transition">Scalesharkweb@gmail.com</a>
+              <a href="https://wa.me/33650986994" className="mt-3 block hover:text-violet transition">+33 6 50 98 69 94</a>
               <p className="mt-3 text-sm text-ink-dim">Lisbon · Amsterdam</p>
               <div className="mt-6 flex items-center gap-2 text-sm">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
