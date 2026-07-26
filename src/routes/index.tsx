@@ -141,9 +141,12 @@ function Hero() {
             </div>
           </FadeUp>
 
-          <h1 className="font-display text-[clamp(2.75rem,6.5vw,5rem)] font-semibold leading-[1.08] tracking-tight">
+          <h1 className="font-display text-[clamp(2.5rem,6.5vw,5rem)] font-semibold leading-[1.1] tracking-tight">
             <SplitReveal as="span" text={t("hero.title1")} className="block" />
-            <SplitReveal as="span" text={t("hero.title2")} className="block" />
+            <span className="block md:inline">
+              <SplitReveal as="span" text={t("hero.title2")} className="inline" />
+              {" "}
+            </span>
             <span className="block">
               <TypingText key="home-typing-text" words={[t("hero.word1"), t("hero.word2"), t("hero.word3")]} />
             </span>
