@@ -673,7 +673,6 @@ function FinalCTA() {
               +33 6 50 98 69 94
             </a>
           </div>
-          <p className="mt-6 text-sm text-ink-dim">{t("home.final.booking")}</p>
         </FadeUp>
       </div>
     </section>

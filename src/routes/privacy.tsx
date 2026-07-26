@@ -50,7 +50,7 @@ function PrivacyPage() {
               </p>
               <p className="mt-2 leading-relaxed text-ink-dim">
                 ScaleShark<br />
-                Email: muhammadzunnoon.web@gmail.com<br />
+                Email: Scalesharkweb@gmail.com<br />
                 WhatsApp: +33 6 50 98 69 94
               </p>
             </div>
@@ -119,7 +119,7 @@ function PrivacyPage() {
                 <li>• <strong>Right to Withdraw Consent:</strong> Withdraw consent at any time</li>
               </ul>
               <p className="mt-4 leading-relaxed text-ink-dim">
-                To exercise these rights, please contact us at muhammadzunnoon.web@gmail.com or via WhatsApp at +33 6 50 98 69 94.
+                To exercise these rights, please contact us at Scalesharkweb@gmail.com or via WhatsApp at +33 6 50 98 69 94.
               </p>
             </div>
           </FadeUp>
@@ -207,8 +207,8 @@ function PrivacyPage() {
               </p>
               <p className="mt-4 leading-relaxed text-ink-dim">
                 Email:{" "}
-                <a href="mailto:muhammadzunnoon.web@gmail.com" className="text-violet hover:underline">
-                  muhammadzunnoon.web@gmail.com
+                <a href="mailto:Scalesharkweb@gmail.com" className="text-violet hover:underline">
+                  Scalesharkweb@gmail.com
                 </a>
                 <br />
                 WhatsApp:{" "}

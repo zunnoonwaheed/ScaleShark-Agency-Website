@@ -116,15 +116,19 @@ export function Footer() {
             </div>
             <div>
               <p className="mb-4 text-xs uppercase tracking-[0.2em] text-ink-dim">
-                {t("footer.location")}
+                Contact
               </p>
               <ul className="space-y-2 text-ink-dim">
-                <li>Lisbon · Amsterdam</li>
-                <li className="flex items-center gap-2">
-                  <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-                  {t("footer.booking")}
+                <li>
+                  <a href="mailto:Scalesharkweb@gmail.com" className="hover:text-violet transition">
+                    Email Us
+                  </a>
                 </li>
-                <li>{t("footer.reply")}</li>
+                <li>
+                  <a href="https://wa.me/33650986994" className="hover:text-violet transition">
+                    WhatsApp
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
