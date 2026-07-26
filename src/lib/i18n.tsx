@@ -99,8 +99,8 @@ const en: Dict = {
   "about.team.heading": "Senior operators.",
   "about.values.eyebrow": "Values",
   "about.values.heading": "How we work.",
-  "about.journey.eyebrow": "Journey",
-  "about.journey.heading": "How the studio grew.",
+  "about.journey.eyebrow": "OUR PROCESS",
+  "about.journey.heading": "How We Work With You",
   "about.studio.eyebrow": "Studio",
   "about.studio.heading": "Behind the scenes.",
 
@@ -155,7 +155,7 @@ const en: Dict = {
   "contact.q.details": "Tell us about the project",
   "contact.q.details.ph":
     "Goals, current situation, links to anything relevant. The more specific, the more useful the first call.",
-  "contact.q.email": "Where should we reply?",
+  "contact.q.email": "Email",
   "contact.q.email.ph": "you@company.com",
   "contact.q.email.note": "We use it for the reply and nothing else.",
   "contact.done.title": "Brief received.",
@@ -315,8 +315,8 @@ const fr: Dict = {
   "about.team.heading": "Opérateurs seniors.",
   "about.values.eyebrow": "Valeurs",
   "about.values.heading": "Notre façon de travailler.",
-  "about.journey.eyebrow": "Parcours",
-  "about.journey.heading": "Comment le studio a grandi.",
+  "about.journey.eyebrow": "NOTRE MÉTHODE",
+  "about.journey.heading": "Comment nous travaillons avec vous",
   "about.studio.eyebrow": "Studio",
   "about.studio.heading": "Dans les coulisses.",
 
@@ -368,7 +368,7 @@ const fr: Dict = {
   "contact.q.details": "Parlez-nous du projet",
   "contact.q.details.ph":
     "Objectifs, situation actuelle, liens pertinents. Plus c'est précis, plus le premier appel sera utile.",
-  "contact.q.email": "Où répondre ?",
+  "contact.q.email": "E-mail",
   "contact.q.email.ph": "vous@entreprise.com",
   "contact.q.email.note": "Nous l'utilisons uniquement pour la réponse.",
   "contact.done.title": "Brief bien reçu.",

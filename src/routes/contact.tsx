@@ -133,7 +133,7 @@ ${data.description}
             <div className="rounded-3xl border border-border bg-surface/40 p-6">
               <p className="text-xs uppercase tracking-[0.2em] text-ink-dim">{t("contact.studio")}</p>
               <a href="mailto:Scalesharkweb@gmail.com" className="mt-3 block hover:text-violet transition">Scalesharkweb@gmail.com</a>
-              <a href="https://wa.me/33650986994" className="mt-2 block hover:text-violet transition">+33 6 50 98 69 94</a>
+              <a href="https://wa.me/33650986994" className="mt-2 block hover:text-violet transition">0650986994</a>
             </div>
             <div className="mt-6 rounded-3xl border border-border bg-surface/40 p-6 text-sm text-ink-dim">
               <p className="text-xs uppercase tracking-[0.2em] text-violet">

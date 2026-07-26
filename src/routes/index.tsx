@@ -119,7 +119,7 @@ function Hero() {
   const { t } = useT();
 
   return (
-    <section className="relative overflow-hidden pb-12 pt-24 md:pb-16 md:pt-32">
+    <section className="relative overflow-hidden pb-12 pt-32 md:pb-16 md:pt-40">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-violet/[0.06] blur-[140px]" />
         <div
@@ -134,13 +134,6 @@ function Hero() {
 
       <div className="relative mx-auto max-w-[1200px] px-6 text-center md:px-10">
         <div className="mx-auto max-w-4xl">
-          <FadeUp>
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-border bg-surface/60 px-4 py-2 text-xs uppercase tracking-[0.2em] text-ink-dim backdrop-blur">
-              <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-              {t("hero.badge")}
-            </div>
-          </FadeUp>
-
           <h1 className="font-display text-[clamp(2.5rem,6.5vw,5rem)] font-semibold leading-[1.1] tracking-tight">
             <SplitReveal as="span" text={t("hero.title1")} className="block" />
             <span className="block md:inline">
@@ -673,7 +666,7 @@ function FinalCTA() {
               data-cursor="hover"
               className="rounded-full border border-border px-8 py-4 font-medium transition hover:border-ink"
             >
-              +33 6 50 98 69 94
+              0650986994
             </a>
           </div>
         </FadeUp>

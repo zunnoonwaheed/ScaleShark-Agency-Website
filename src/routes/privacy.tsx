@@ -51,7 +51,7 @@ function PrivacyPage() {
               <p className="mt-2 leading-relaxed text-ink-dim">
                 ScaleShark<br />
                 Email: Scalesharkweb@gmail.com<br />
-                WhatsApp: +33 6 50 98 69 94
+                WhatsApp: 0650986994
               </p>
             </div>
           </FadeUp>
@@ -119,7 +119,7 @@ function PrivacyPage() {
                 <li>• <strong>Right to Withdraw Consent:</strong> Withdraw consent at any time</li>
               </ul>
               <p className="mt-4 leading-relaxed text-ink-dim">
-                To exercise these rights, please contact us at Scalesharkweb@gmail.com or via WhatsApp at +33 6 50 98 69 94.
+                To exercise these rights, please contact us at Scalesharkweb@gmail.com or via WhatsApp at 0650986994.
               </p>
             </div>
           </FadeUp>
@@ -213,7 +213,7 @@ function PrivacyPage() {
                 <br />
                 WhatsApp:{" "}
                 <a href="https://wa.me/33650986994" className="text-violet hover:underline">
-                  +33 6 50 98 69 94
+                  0650986994
                 </a>
               </p>
             </div>

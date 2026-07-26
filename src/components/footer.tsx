@@ -27,7 +27,7 @@ export function Footer() {
                   data-cursor="hover"
                   className="group inline-flex items-center gap-3 text-2xl font-medium underline decoration-violet/40 decoration-2 underline-offset-8 transition hover:decoration-violet md:text-4xl"
                 >
-                  +33 6 50 98 69 94
+                  0650986994
                   <span aria-hidden className="transition-transform group-hover:translate-x-2">
                     →
                   </span>

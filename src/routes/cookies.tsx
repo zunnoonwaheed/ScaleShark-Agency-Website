@@ -233,7 +233,7 @@ function CookiesPage() {
                 <br />
                 WhatsApp:{" "}
                 <a href="https://wa.me/33650986994" className="text-violet hover:underline">
-                  +33 6 50 98 69 94
+                  0650986994
                 </a>
               </p>
             </div>
