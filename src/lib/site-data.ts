@@ -19,8 +19,8 @@ export const services = [
   {
     id: "websites",
     number: "02",
-    title: "Business Websites",
-    tagline: "Corporate presence that earns credibility.",
+    title: "Website Creation",
+    tagline: "Professional websites designed to strengthen your online presence.",
     description:
       "Editorial company sites, service pages, and campaign landings engineered for SEO, performance, and clean CMS handover.",
     deliverables: [

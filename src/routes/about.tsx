@@ -101,10 +101,11 @@ function Values() {
 }
 
 function Expertise() {
+  const { t } = useT();
   const expertiseAreas = [
     {
-      title: "E-Commerce Development",
-      description: "Custom Shopify stores and headless commerce solutions built for scale and conversion.",
+      titleKey: "about.expertise.ecom.title",
+      descKey: "about.expertise.ecom.desc",
       icon: (
         <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -112,8 +113,8 @@ function Expertise() {
       ),
     },
     {
-      title: "Web Applications",
-      description: "Full-stack web apps with modern frameworks, optimized for performance and user experience.",
+      titleKey: "about.expertise.webapps.title",
+      descKey: "about.expertise.webapps.desc",
       icon: (
         <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -121,8 +122,8 @@ function Expertise() {
       ),
     },
     {
-      title: "Workflow Automation",
-      description: "Smart automation systems that streamline operations and eliminate repetitive tasks.",
+      titleKey: "about.expertise.automation.title",
+      descKey: "about.expertise.automation.desc",
       icon: (
         <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -130,8 +131,8 @@ function Expertise() {
       ),
     },
     {
-      title: "AI Integration",
-      description: "Applied AI solutions for customer service, content generation, and data analysis.",
+      titleKey: "about.expertise.ai.title",
+      descKey: "about.expertise.ai.desc",
       icon: (
         <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -144,18 +145,18 @@ function Expertise() {
     <section className="border-t border-border py-24">
       <div className="mx-auto max-w-[1320px] px-5 md:px-8">
         <FadeUp>
-          <p className="text-xs uppercase tracking-[0.25em] text-violet">Expertise</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-violet">{t("about.expertise.eyebrow")}</p>
           <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-tight">
-            What we build.
+            {t("about.expertise.heading")}
           </h2>
         </FadeUp>
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {expertiseAreas.map((area, i) => (
-            <FadeUp key={area.title} delay={i * 0.1}>
+            <FadeUp key={area.titleKey} delay={i * 0.1}>
               <div className="group rounded-3xl border border-border bg-surface/40 p-8 transition hover:border-violet/60 hover:bg-surface">
                 <div className="mb-4 text-violet transition-transform group-hover:scale-110">{area.icon}</div>
-                <h3 className="font-display text-2xl font-semibold">{area.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-ink-dim">{area.description}</p>
+                <h3 className="font-display text-2xl font-semibold">{t(area.titleKey)}</h3>
+                <p className="mt-3 text-base leading-relaxed text-ink-dim">{t(area.descKey)}</p>
               </div>
             </FadeUp>
           ))}
@@ -166,22 +167,23 @@ function Expertise() {
 }
 
 function WhyUs() {
+  const { t } = useT();
   const reasons = [
     {
-      title: "Senior-Level Execution",
-      description: "Every project is handled by experienced developers, not juniors learning on your dime.",
+      titleKey: "about.whyus.reason1.title",
+      descKey: "about.whyus.reason1.desc",
     },
     {
-      title: "Fixed Scope, Fixed Price",
-      description: "Clear pricing upfront. No surprises, no scope creep, no endless revisions.",
+      titleKey: "about.whyus.reason2.title",
+      descKey: "about.whyus.reason2.desc",
     },
     {
-      title: "Built to Last",
-      description: "We write maintainable code with documentation, so you're never locked into our services.",
+      titleKey: "about.whyus.reason3.title",
+      descKey: "about.whyus.reason3.desc",
     },
     {
-      title: "Ship Fast, Iterate Faster",
-      description: "Launch in weeks, not months. Then we iterate based on real user data.",
+      titleKey: "about.whyus.reason4.title",
+      descKey: "about.whyus.reason4.desc",
     },
   ];
 
@@ -189,14 +191,14 @@ function WhyUs() {
     <section className="border-t border-border py-24 bg-surface/20">
       <div className="mx-auto max-w-[1320px] px-5 md:px-8">
         <FadeUp>
-          <p className="text-xs uppercase tracking-[0.25em] text-violet">Why Partner With Us</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-violet">{t("about.whyus.eyebrow")}</p>
           <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-tight">
-            No fluff, just results.
+            {t("about.whyus.heading")}
           </h2>
         </FadeUp>
         <div className="mt-16 grid gap-8 md:grid-cols-2">
           {reasons.map((reason, i) => (
-            <FadeUp key={reason.title} delay={i * 0.1}>
+            <FadeUp key={reason.titleKey} delay={i * 0.1}>
               <div className="group flex gap-6">
                 <div className="flex-shrink-0">
                   <div className="grid h-12 w-12 place-items-center rounded-full border border-violet/40 bg-violet/10 transition-all group-hover:border-violet group-hover:bg-violet/20">
@@ -206,8 +208,8 @@ function WhyUs() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-display text-xl font-semibold transition-colors group-hover:text-violet">{reason.title}</h3>
-                  <p className="mt-2 text-base leading-relaxed text-ink-dim">{reason.description}</p>
+                  <h3 className="font-display text-xl font-semibold transition-colors group-hover:text-violet">{t(reason.titleKey)}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-ink-dim">{t(reason.descKey)}</p>
                 </div>
               </div>
             </FadeUp>
@@ -268,15 +270,16 @@ function Timeline() {
 }
 
 function FinalCTA() {
+  const { t } = useT();
   return (
     <section className="border-t border-border py-24 md:py-32">
       <div className="mx-auto max-w-[1000px] px-5 text-center md:px-8">
         <FadeUp>
           <h2 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-tight">
-            Ready to build something great?
+            {t("about.final.heading")}
           </h2>
           <p className="mt-8 text-xl leading-relaxed text-ink-dim">
-            Let's discuss your project. No sales pitch, just a straightforward conversation about what you need.
+            {t("about.final.desc")}
           </p>
           <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Link
@@ -284,14 +287,14 @@ function FinalCTA() {
               data-cursor="hover"
               className="inline-flex items-center justify-center rounded-full bg-violet px-8 py-4 font-medium text-background transition hover:bg-violet-glow"
             >
-              Start a Project
+              {t("about.final.cta")}
             </Link>
             <Link
               to="/portfolio"
               data-cursor="hover"
               className="inline-flex items-center justify-center rounded-full border border-border px-8 py-4 font-medium transition hover:border-violet hover:text-violet"
             >
-              View Our Work
+              {t("about.final.portfolio")}
             </Link>
           </div>
         </FadeUp>

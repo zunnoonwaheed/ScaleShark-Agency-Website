@@ -22,7 +22,7 @@ type ServiceTr = {
 const servicesFr: Record<string, ServiceTr> = {
   shopify: {
     title: "Boutiques Shopify",
-    tagline: "Du commerce qui convertit dès le premier scroll.",
+    tagline: "Le commerce qui convertit dès le premier scroll.",
     description:
       "Développements Shopify sur mesure, ingénierie de thèmes et travail sur la performance pour les marques qui font de leur boutique leur principale surface de vente.",
     deliverables: [
@@ -34,8 +34,8 @@ const servicesFr: Record<string, ServiceTr> = {
     ],
   },
   websites: {
-    title: "Sites d'entreprise",
-    tagline: "Une présence corporate qui inspire confiance.",
+    title: "Création de sites web",
+    tagline: "Des sites professionnels conçus pour renforcer votre présence en ligne.",
     description:
       "Sites d'entreprise éditoriaux, pages services et landings de campagne, pensés pour le SEO, la performance et une remise CMS propre.",
     deliverables: [
@@ -442,8 +442,8 @@ const faqEn: Faq[] = [
     a: "Often. We plug into your Linear / GitHub, run standups on your cadence, and hand off cleanly with docs.",
   },
   {
-    q: "Where are you based?",
-    a: "Lisbon and Amsterdam. We work with clients across Europe and North America and travel for kickoff and launch when it helps.",
+    q: "How do we get started?",
+    a: "Fill out the project brief on our contact page. We reply within 24 hours with next steps and a proposed intro call.",
   },
 ];
 
@@ -461,8 +461,8 @@ const faqFr: Faq[] = [
     a: "Souvent. Nous nous branchons sur votre Linear / GitHub, tenons les standups à votre rythme et handoff proprement avec la documentation.",
   },
   {
-    q: "Où êtes-vous basés ?",
-    a: "Lisbonne et Amsterdam. Nous travaillons avec des clients en Europe et en Amérique du Nord et nous déplaçons pour les kick-offs et lancements si utile.",
+    q: "Comment démarrer ?",
+    a: "Remplissez le brief projet sur notre page contact. Nous répondons sous 24 heures avec les prochaines étapes et une proposition d'appel.",
   },
 ];
 

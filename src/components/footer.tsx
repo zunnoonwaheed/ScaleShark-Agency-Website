@@ -69,12 +69,12 @@ export function Footer() {
                 {t("footer.services")}
               </p>
               <ul className="space-y-2">
-                <li>Shopify</li>
-                <li>Websites</li>
-                <li>Redesign</li>
-                <li>Integrations</li>
-                <li>Automation</li>
-                <li>AI</li>
+                <li>{t("footer.service.shopify")}</li>
+                <li>{t("footer.service.websites")}</li>
+                <li>{t("footer.service.redesign")}</li>
+                <li>{t("footer.service.integrations")}</li>
+                <li>{t("footer.service.automation")}</li>
+                <li>{t("footer.service.ai")}</li>
               </ul>
             </div>
             <div>
@@ -137,16 +137,22 @@ export function Footer() {
 
       <div className="border-y border-border py-6">
         <Marquee>
-          {["Shopify", "Websites", "Redesign", "Integrations", "Automation", "AI", "ScaleShark"].map(
-            (label, i) => (
-              <span
-                key={i}
-                className="font-display text-[clamp(2.5rem,6vw,5rem)] font-semibold uppercase tracking-tight text-ink/10"
-              >
-                {label} <span className="text-violet/40">◆</span>
-              </span>
-            ),
-          )}
+          {[
+            t("footer.service.shopify"),
+            t("footer.service.websites"),
+            t("footer.service.redesign"),
+            t("footer.service.integrations"),
+            t("footer.service.automation"),
+            t("footer.service.ai"),
+            "ScaleShark",
+          ].map((label, i) => (
+            <span
+              key={i}
+              className="font-display text-[clamp(2.5rem,6vw,5rem)] font-semibold uppercase tracking-tight text-ink/10"
+            >
+              {label} <span className="text-violet/40">◆</span>
+            </span>
+          ))}
         </Marquee>
       </div>
 

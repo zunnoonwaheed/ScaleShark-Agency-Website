@@ -29,7 +29,6 @@ type FormState = {
   name: string;
   company: string;
   email: string;
-  budget: string;
   timeline: string;
   description: string;
 };
@@ -39,14 +38,12 @@ const initial: FormState = {
   name: "",
   company: "",
   email: "",
-  budget: "",
   timeline: "",
   description: "",
 };
 
 function ContactPage() {
   const { t } = useT();
-  const [step, setStep] = useState(0);
   const [data, setData] = useState<FormState>(initial);
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -61,14 +58,6 @@ function ContactPage() {
     t("contact.type.other"),
   ];
 
-  const budgets = [
-    t("contact.budget.1"),
-    t("contact.budget.2"),
-    t("contact.budget.3"),
-    t("contact.budget.4"),
-    t("contact.budget.5"),
-  ];
-
   const timelines = [
     t("contact.timeline.asap"),
     t("contact.timeline.1"),
@@ -76,84 +65,52 @@ function ContactPage() {
     t("contact.timeline.flex"),
   ];
 
-  const steps = [
-    t("contact.step.type"),
-    t("contact.step.you"),
-    t("contact.step.budget"),
-    t("contact.step.timeline"),
-    t("contact.step.details"),
-    t("contact.step.contact"),
-  ];
-
-  const canNext = () => {
-    switch (step) {
-      case 0:
-        return !!data.type;
-      case 1:
-        return !!data.name && !!data.company;
-      case 2:
-        return !!data.budget;
-      case 3:
-        return !!data.timeline;
-      case 4:
-        return data.description.length > 10;
-      case 5:
-        return /\S+@\S+\.\S+/.test(data.email);
-      default:
-        return false;
-    }
+  const canSubmit = () => {
+    return (
+      !!data.name &&
+      !!data.email &&
+      /\S+@\S+\.\S+/.test(data.email) &&
+      data.description.length > 10
+    );
   };
 
-  const next = async () => {
-    if (step === steps.length - 1) {
-      // Submit form to email via Web3Forms
-      setSubmitting(true);
-      try {
-        const formData = new FormData();
-        formData.append("access_key", "01a01fea-8900-47ed-bd46-a15b229aa8df");
-        formData.append("subject", `New Project Inquiry from ${data.name}`);
-        formData.append("from_name", "ScaleShark Website");
-        formData.append("name", data.name);
-        formData.append("company", data.company);
-        formData.append("email", data.email);
-        formData.append("message", `
-Project Type: ${data.type}
-Company: ${data.company}
-Budget: ${data.budget}
-Timeline: ${data.timeline}
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canSubmit()) return;
 
+    setSubmitting(true);
+    try {
+      const formData = new FormData();
+      formData.append("access_key", "01a01fea-8900-47ed-bd46-a15b229aa8df");
+      formData.append("subject", `New Project Inquiry from ${data.name}`);
+      formData.append("from_name", "ScaleShark Website");
+      formData.append("name", data.name);
+      formData.append("company", data.company);
+      formData.append("email", data.email);
+      formData.append("message", `
+${data.company ? `Company: ${data.company}\n` : ''}
 Project Description:
 ${data.description}
-        `);
+      `);
 
-        console.log("Submitting form to Web3Forms...");
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
 
-        const response = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          body: formData,
-        });
+      const result = await response.json();
 
-        const result = await response.json();
-        console.log("Web3Forms Response:", result);
-
-        if (result.success) {
-          console.log("✅ Form submitted successfully!");
-          setDone(true);
-        } else {
-          console.error("❌ Form submission failed:", result.message);
-          alert("There was an error submitting the form. Please try again or contact us via WhatsApp.");
-        }
-      } catch (error) {
-        console.error("❌ Error submitting form:", error);
-        alert("There was an error submitting the form. Please try again or contact us via WhatsApp.");
-      } finally {
-        setSubmitting(false);
+      if (result.success) {
+        setDone(true);
+      } else {
+        alert("There was an error submitting the form. Please try again or contact us directly.");
       }
-    } else {
-      setStep((s) => s + 1);
+    } catch (error) {
+      alert("There was an error submitting the form. Please try again or contact us directly.");
+    } finally {
+      setSubmitting(false);
     }
   };
-  const back = () => setStep((s) => Math.max(0, s - 1));
 
   return (
     <>
@@ -188,153 +145,52 @@ ${data.description}
 
           <div className="rounded-3xl border border-border bg-surface/40 p-6 md:p-10">
             {!done ? (
-              <>
-                <div className="mb-8">
-                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-ink-dim">
-                    <span>
-                      {t("contact.step")} {step + 1} / {steps.length}
-                    </span>
-                    <span>{steps[step]}</span>
-                  </div>
-                  <div className="mt-3 h-1 overflow-hidden rounded-full bg-border">
-                    <motion.div
-                      className="h-full bg-violet"
-                      animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid gap-6 md:grid-cols-2">
+                  <Field label={t("contact.q.name")} required>
+                    <Input
+                      value={data.name}
+                      onChange={(v) => setData({ ...data, name: v })}
+                      placeholder={t("contact.q.name.ph")}
+                      required
                     />
-                  </div>
+                  </Field>
+                  <Field label={t("contact.q.email")} required>
+                    <Input
+                      value={data.email}
+                      onChange={(v) => setData({ ...data, email: v })}
+                      placeholder={t("contact.q.email.ph")}
+                      type="email"
+                      required
+                    />
+                  </Field>
                 </div>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={step}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    {step === 0 && (
-                      <Field label={t("contact.q.type")}>
-                        <div className="grid gap-2 md:grid-cols-2">
-                          {projectTypes.map((pt) => (
-                            <button
-                              key={pt}
-                              onClick={() => setData({ ...data, type: pt })}
-                              data-cursor="hover"
-                              className={`rounded-2xl border px-5 py-5 md:px-4 md:py-4 text-left text-sm transition touch-manipulation active:scale-95 ${
-                                data.type === pt
-                                  ? "border-violet bg-violet/10 text-ink"
-                                  : "border-border hover:border-ink hover:border-violet/60"
-                              }`}
-                            >
-                              {pt}
-                            </button>
-                          ))}
-                        </div>
-                      </Field>
-                    )}
+                <Field label={t("contact.q.company")} optional>
+                  <Input
+                    value={data.company}
+                    onChange={(v) => setData({ ...data, company: v })}
+                    placeholder={t("contact.q.company.ph")}
+                  />
+                </Field>
 
-                    {step === 1 && (
-                      <div className="space-y-6">
-                        <Field label={t("contact.q.name")}>
-                          <Input
-                            value={data.name}
-                            onChange={(v) => setData({ ...data, name: v })}
-                            placeholder={t("contact.q.name.ph")}
-                          />
-                        </Field>
-                        <Field label={t("contact.q.company")}>
-                          <Input
-                            value={data.company}
-                            onChange={(v) => setData({ ...data, company: v })}
-                            placeholder={t("contact.q.company.ph")}
-                          />
-                        </Field>
-                      </div>
-                    )}
+                <Field label={t("contact.q.details")} required>
+                  <textarea
+                    value={data.description}
+                    onChange={(e) => setData({ ...data, description: e.target.value })}
+                    rows={5}
+                    placeholder={t("contact.q.details.ph")}
+                    className="w-full rounded-2xl border border-border bg-background/60 p-4 text-sm outline-none transition focus:border-violet focus:ring-2 focus:ring-violet/20 touch-manipulation"
+                    required
+                  />
+                </Field>
 
-                    {step === 2 && (
-                      <Field label={t("contact.q.budget")}>
-                        <div className="grid gap-2 md:grid-cols-2">
-                          {budgets.map((b) => (
-                            <button
-                              key={b}
-                              onClick={() => setData({ ...data, budget: b })}
-                              data-cursor="hover"
-                              className={`rounded-2xl border px-5 py-5 md:px-4 md:py-4 text-left text-sm transition touch-manipulation active:scale-95 ${
-                                data.budget === b
-                                  ? "border-violet bg-violet/10"
-                                  : "border-border hover:border-ink hover:border-violet/60"
-                              }`}
-                            >
-                              {b}
-                            </button>
-                          ))}
-                        </div>
-                      </Field>
-                    )}
-
-                    {step === 3 && (
-                      <Field label={t("contact.q.timeline")}>
-                        <div className="grid gap-2 md:grid-cols-2">
-                          {timelines.map((b) => (
-                            <button
-                              key={b}
-                              onClick={() => setData({ ...data, timeline: b })}
-                              data-cursor="hover"
-                              className={`rounded-2xl border px-5 py-5 md:px-4 md:py-4 text-left text-sm transition touch-manipulation active:scale-95 ${
-                                data.timeline === b
-                                  ? "border-violet bg-violet/10"
-                                  : "border-border hover:border-ink hover:border-violet/60"
-                              }`}
-                            >
-                              {b}
-                            </button>
-                          ))}
-                        </div>
-                      </Field>
-                    )}
-
-                    {step === 4 && (
-                      <Field label={t("contact.q.details")}>
-                        <textarea
-                          value={data.description}
-                          onChange={(e) => setData({ ...data, description: e.target.value })}
-                          rows={7}
-                          placeholder={t("contact.q.details.ph")}
-                          className="w-full rounded-2xl border border-border bg-background/60 p-5 md:p-4 text-base md:text-sm outline-none transition focus:border-violet focus:ring-2 focus:ring-violet/20 touch-manipulation"
-                        />
-                      </Field>
-                    )}
-
-                    {step === 5 && (
-                      <Field label={t("contact.q.email")}>
-                        <Input
-                          value={data.email}
-                          onChange={(v) => setData({ ...data, email: v })}
-                          placeholder={t("contact.q.email.ph")}
-                          type="email"
-                        />
-                        <p className="mt-3 text-xs text-ink-dim">{t("contact.q.email.note")}</p>
-                      </Field>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-
-                <div className="mt-10 flex items-center justify-between">
+                <div className="flex justify-end">
                   <button
-                    onClick={back}
-                    disabled={step === 0}
+                    type="submit"
+                    disabled={!canSubmit() || submitting}
                     data-cursor="hover"
-                    className="text-sm md:text-sm py-2 px-3 rounded-lg text-ink-dim transition hover:text-ink disabled:opacity-30 touch-manipulation active:scale-95"
-                  >
-                    ← {t("contact.back")}
-                  </button>
-                  <button
-                    onClick={next}
-                    disabled={!canNext() || submitting}
-                    data-cursor="hover"
-                    className="inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 md:px-6 md:py-3 text-sm font-medium text-primary-foreground transition disabled:opacity-40 hover:bg-violet-glow touch-manipulation active:scale-95"
+                    className="inline-flex items-center gap-2 rounded-full bg-violet px-8 py-4 md:px-6 md:py-3 text-sm font-medium text-background transition disabled:opacity-40 hover:bg-violet-glow touch-manipulation active:scale-95"
                   >
                     {submitting ? (
                       <>
@@ -346,12 +202,12 @@ ${data.description}
                       </>
                     ) : (
                       <>
-                        {step === steps.length - 1 ? t("contact.send") : t("contact.next")} →
+                        {t("contact.send")} →
                       </>
                     )}
                   </button>
                 </div>
-              </>
+              </form>
             ) : (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -382,10 +238,24 @@ ${data.description}
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  children,
+  required,
+  optional
+}: {
+  label: string;
+  children: React.ReactNode;
+  required?: boolean;
+  optional?: boolean;
+}) {
   return (
     <div>
-      <p className="mb-4 font-display text-2xl md:text-3xl">{label}</p>
+      <p className="mb-3 text-sm font-medium text-ink flex items-center gap-2">
+        {label}
+        {required && <span className="text-violet">*</span>}
+        {optional && <span className="text-xs text-ink-dim font-normal">(Optional)</span>}
+      </p>
       {children}
     </div>
   );
@@ -395,11 +265,13 @@ function Input({
   onChange,
   placeholder,
   type = "text",
+  required,
 }: {
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
   type?: string;
+  required?: boolean;
 }) {
   return (
     <input
@@ -407,7 +279,8 @@ function Input({
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       type={type}
-      className="w-full rounded-2xl border border-border bg-background/60 px-5 py-5 md:py-4 text-base outline-none transition focus:border-violet focus:ring-2 focus:ring-violet/20 touch-manipulation"
+      required={required}
+      className="w-full rounded-2xl border border-border bg-background/60 px-4 py-4 md:py-3 text-sm outline-none transition focus:border-violet focus:ring-2 focus:ring-violet/20 touch-manipulation"
     />
   );
 }

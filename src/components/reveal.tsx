@@ -27,6 +27,7 @@ export function SplitReveal({
   return (
     <Tag className={className}>
       <motion.span
+        key={text}
         variants={container}
         initial="hidden"
         whileInView="show"
