@@ -121,7 +121,7 @@ export function Footer() {
               <ul className="space-y-2 text-ink-dim">
                 <li>
                   <a href="mailto:Scalesharkweb@gmail.com" className="hover:text-violet transition">
-                    Email Us
+                    {t("footer.email")}
                   </a>
                 </li>
                 <li>

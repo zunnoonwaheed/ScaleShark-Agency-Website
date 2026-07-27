@@ -207,6 +207,10 @@ const en: Dict = {
   "footer.privacy": "Privacy",
   "footer.terms": "Terms",
   "footer.cookies": "Cookies",
+  "footer.email": "Email",
+
+  // common
+  "common.viewAllServices": "View all services",
 
   // preloader
   "preloader.tag": "ScaleShark · Loading experience",
@@ -419,6 +423,9 @@ const fr: Dict = {
   "footer.privacy": "Confidentialité",
   "footer.terms": "Conditions",
   "footer.cookies": "Cookies",
+  "footer.email": "E-mail",
+
+  "common.viewAllServices": "Voir tous les services",
 
   "preloader.tag": "ScaleShark · Chargement de l'expérience",
 

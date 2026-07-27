@@ -265,7 +265,7 @@ function ServicesSticky() {
               data-cursor="hover"
               className="group hidden shrink-0 items-center gap-2 text-sm font-medium text-violet transition hover:gap-3 md:inline-flex"
             >
-              View all services
+              {t("common.viewAllServices")}
               <span className="text-lg transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </FadeUp>
@@ -324,7 +324,7 @@ function ServicesSticky() {
               data-cursor="hover"
               className="inline-flex items-center gap-3 rounded-full bg-violet px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-violet-glow"
             >
-              View all services
+              {t("common.viewAllServices")}
               <span className="text-lg">→</span>
             </Link>
           </div>
